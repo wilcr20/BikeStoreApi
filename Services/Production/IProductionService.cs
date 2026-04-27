@@ -1,12 +1,13 @@
-﻿using BikeStoreApi.Entities.Production;
+﻿using BikeStoreApi.Entities;
+using BikeStoreApi.Entities.Production;
 
 namespace BikeStoreApi.Services.Production
 {
     public interface IProductionService
     {
-        Task<List<Product>> GetAllProducts();
+        GenericResponse<Product> GetAllProducts();
 
-        Task<List<Brand>> GetAllBrands();
-        Task<List<Category>> GetAllCategories();
+        GenericResponse<Brand> GetAllBrands();
+        GenericResponse<Category> GetAllCategories();
     }
 }

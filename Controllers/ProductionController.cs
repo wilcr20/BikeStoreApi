@@ -1,4 +1,5 @@
-﻿using BikeStoreApi.Entities.Production;
+﻿using BikeStoreApi.Entities;
+using BikeStoreApi.Entities.Production;
 using BikeStoreApi.Repositories.Production;
 using BikeStoreApi.Services.Production;
 using Microsoft.AspNetCore.Mvc;
@@ -25,40 +26,22 @@ namespace BikeStoreApi.Controllers
         [HttpGet("getAllBrands")]
         public IActionResult getAllBrands()
         {
-            List<Brand> brands = this._productionService.GetAllBrands().Result;
-            if (brands.Count == 0)
-            {
-                var data = new { Message = "Not data" };
-                return StatusCode(StatusCodes.Status203NonAuthoritative, data);
-            }
-
-            return Ok(brands);
+            GenericResponse<Brand> response = this._productionService.GetAllBrands();
+            return Ok(response);
         }
 
         [HttpGet("getAllCategories")]
         public IActionResult getAllCategories()
         {
-            List<Category> categories = this._productionService.GetAllCategories().Result;
-            if (categories.Count == 0)
-            {
-                var data = new { Message = "Not data" };
-                return StatusCode(StatusCodes.Status203NonAuthoritative, data);
-            }
-
-            return Ok(categories);
+            GenericResponse<Category> response = this._productionService.GetAllCategories();
+            return Ok(response);
         }
 
         [HttpGet("getAllProducts")]
         public IActionResult getAllProducts()
         {
-            List<Product> products = this._productionService.GetAllProducts().Result;
-            if(products.Count == 0)
-            {
-                var data = new { Message = "Not data" };
-                return StatusCode(StatusCodes.Status203NonAuthoritative, data);
-            }
-
-            return Ok(products);
+            GenericResponse<Product> response = this._productionService.GetAllProducts();
+            return Ok(response);
         }
 
     }

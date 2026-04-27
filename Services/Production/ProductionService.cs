@@ -1,5 +1,7 @@
-﻿using BikeStoreApi.Entities.Production;
+﻿using BikeStoreApi.Entities;
+using BikeStoreApi.Entities.Production;
 using BikeStoreApi.Repositories.Production;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace BikeStoreApi.Services.Production
 {
@@ -10,19 +12,73 @@ namespace BikeStoreApi.Services.Production
             this._productionRepository = productionRepository;
         }
 
-        public Task<List<Brand>> GetAllBrands()
+        public GenericResponse<Brand> GetAllBrands()
         {
-            return _productionRepository.GetAllBrands();
+            var response = new GenericResponse<Brand>();
+
+            var dbResult = _productionRepository.GetAllBrands();
+
+            if (dbResult.IsFaulted)
+            {
+                response.Message = "Server error.";
+                response.DataList = null;
+                return response;
+            }
+            response.DataList = dbResult.Result;
+
+            if (response.DataList.Count() == 0)
+            {
+                response.Message = "Not data found";
+                return response;
+            }
+            response.Message = "Data found!";
+            return response;
         }
 
-        public Task<List<Category>> GetAllCategories()
+        public GenericResponse<Category> GetAllCategories()
         {
-            return _productionRepository.GetAllCategories();
+            var response = new GenericResponse<Category>();
+
+            var dbResult = _productionRepository.GetAllCategories();
+
+            if (dbResult.IsFaulted)
+            {
+                response.Message = "Server error.";
+                response.DataList = null;
+                return response;
+            }
+            response.DataList = dbResult.Result;
+
+            if (response.DataList.Count() == 0)
+            {
+                response.Message = "Not data found";
+                return response;
+            }
+            response.Message = "Data found!";
+            return response;
         }
 
-        public Task<List<Product>> GetAllProducts()
+        public GenericResponse<Product> GetAllProducts()
         {
-            return _productionRepository.GetAllProducts();
+            var response = new GenericResponse<Product>();
+
+            var dbResult = _productionRepository.GetAllProducts();
+
+            if (dbResult.IsFaulted)
+            {
+                response.Message = "Server error.";
+                response.DataList = null;
+                return response;
+            }
+            response.DataList = dbResult.Result;
+
+            if (response.DataList.Count() == 0)
+            {
+                response.Message = "Not data found";
+                return response;
+            }
+            response.Message = "Data found!";
+            return response;
         }
     }
 }
