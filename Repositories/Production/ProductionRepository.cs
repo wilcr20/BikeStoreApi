@@ -1,22 +1,35 @@
-﻿using BikeStoreApi.Entities.Production;
+﻿using BikeStoreApi.Data;
+using BikeStoreApi.Entities.Production;
+using BikeStoreApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BikeStoreApi.Repositories.Production
 {
     public class ProductionRepository : IProductionRepository
     {
-        public Task<List<Brands>> GetAllBrands()
+        private readonly DBContextSqlServer _devDBContext;
+        public ProductionRepository(DBContextSqlServer devDBContext)
         {
-            return Task.FromResult(new List<Brands>()); // Empty data for testing
+            this._devDBContext = devDBContext;
+        }
+        public async Task<List<Brand>> GetAllBrands()
+        {
+            var brands = this._devDBContext.Brands.ToListAsync();
+            return await brands;
         }
 
-        public Task<List<Categories>> GetAllCategories()
+        public async Task<List<Category>> GetAllCategories()
         {
-            return Task.FromResult(new List<Categories>()); // Empty data for testing
+            var categories = this._devDBContext.Categories.ToListAsync();
+            return await categories;
         }
 
-        public Task<List<Products>> GetAllProducts()
+        public async Task<List<Product>> GetAllProducts()
         {
-            return Task.FromResult(new List<Products>()); // Empty data for testing
+            var products = this._devDBContext.Products.ToListAsync();
+            return await products;
         }
     }
 }
+
+

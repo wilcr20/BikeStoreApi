@@ -4,8 +4,16 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <UserSecretsId>0c50918f-c188-4ea7-9827-9ffb676d3b28</UserSecretsId>
+	  
+	  
+    <InvariantGlobalization>false</InvariantGlobalization>
+	  <!--. When InvariantGlobalization is set to false, the application uses 
+	  the default culture and regional settings of the operating system. 
+	  When it's set to true, the application uses the invariant culture, which is a culture-independent 
+	  representation that doesn't change based on the system's regional settings.-->
+
+
+	  <UserSecretsId>0c50918f-c188-4ea7-9827-9ffb676d3b28</UserSecretsId>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
@@ -13,12 +21,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.26" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.26" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.26">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Sales\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
 using BikeStoreApi.Data;
+using BikeStoreApi.Models;
 using BikeStoreApi.Repositories.Production;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DBConnection");
 
 
-builder.Services.AddDbContext<DevDBContext>(options =>
+builder.Services.AddDbContext<DBContextSqlServer>(options => 
         options.UseSqlServer(connectionString));
 
 builder.Services.AddTransient<IProductionRepository, ProductionRepository>();
@@ -49,3 +49,10 @@ Dtos/             # Defines Data Transfer Objects (DTO's) for request and respon
 Repositories/     # Implements data access logic, effectively separating it from core business operations.
 Program.cs        # Application startup and configuration
  */
+
+/*
+ 
+Command used to genrate classes from existing DB
+Scaffold - DbContext "Server=.;Database=BikeStores;Integrated Security=True;Encrypt=False;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer - OutputDir Models
+*/
+

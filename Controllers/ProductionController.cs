@@ -24,7 +24,7 @@ namespace BikeStoreApi.Controllers
         [HttpGet("getAllBrands")]
         public IActionResult getAllBrands()
         {
-            List<Brands> brands = this._productionRepository.GetAllBrands().Result;
+            List<Brand> brands = this._productionRepository.GetAllBrands().Result;
             if (brands.Count == 0)
             {
                 var data = new { Message = "Not data" };
@@ -37,7 +37,7 @@ namespace BikeStoreApi.Controllers
         [HttpGet("getAllCategories")]
         public IActionResult getAllCategories()
         {
-            List<Categories> categories = this._productionRepository.GetAllCategories().Result;
+            List<Category> categories = this._productionRepository.GetAllCategories().Result;
             if (categories.Count == 0)
             {
                 var data = new { Message = "Not data" };
@@ -50,7 +50,7 @@ namespace BikeStoreApi.Controllers
         [HttpGet("getAllProducts")]
         public IActionResult getAllProducts()
         {
-            List<Products> products = this._productionRepository.GetAllProducts().Result;
+            List<Product> products = this._productionRepository.GetAllProducts().Result;
             if(products.Count == 0)
             {
                 var data = new { Message = "Not data" };

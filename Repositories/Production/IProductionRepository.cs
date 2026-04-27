@@ -4,9 +4,9 @@ namespace BikeStoreApi.Repositories.Production
 {
     public interface IProductionRepository
     {
-        Task<List<Products>> GetAllProducts();
+        Task<List<Product>> GetAllProducts();
 
-        Task<List<Brands>> GetAllBrands();
-        Task<List<Categories>> GetAllCategories();
+        Task<List<Brand>> GetAllBrands();
+        Task<List<Category>> GetAllCategories();
     }
 }
