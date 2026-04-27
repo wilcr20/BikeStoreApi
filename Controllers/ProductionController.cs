@@ -1,5 +1,6 @@
 ﻿using BikeStoreApi.Entities.Production;
 using BikeStoreApi.Repositories.Production;
+using BikeStoreApi.Services.Production;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeStoreApi.Controllers
@@ -8,10 +9,10 @@ namespace BikeStoreApi.Controllers
     [ApiController]
     public class ProductionController : Controller
     {
-        private readonly IProductionRepository _productionRepository;
+        private readonly IProductionService _productionService;
 
-        public ProductionController(IProductionRepository productionRepository) { 
-            _productionRepository = productionRepository;
+        public ProductionController(IProductionService productionService) {
+            _productionService = productionService;
         }
 
         [HttpGet("test")]
@@ -24,7 +25,7 @@ namespace BikeStoreApi.Controllers
         [HttpGet("getAllBrands")]
         public IActionResult getAllBrands()
         {
-            List<Brand> brands = this._productionRepository.GetAllBrands().Result;
+            List<Brand> brands = this._productionService.GetAllBrands().Result;
             if (brands.Count == 0)
             {
                 var data = new { Message = "Not data" };
@@ -37,7 +38,7 @@ namespace BikeStoreApi.Controllers
         [HttpGet("getAllCategories")]
         public IActionResult getAllCategories()
         {
-            List<Category> categories = this._productionRepository.GetAllCategories().Result;
+            List<Category> categories = this._productionService.GetAllCategories().Result;
             if (categories.Count == 0)
             {
                 var data = new { Message = "Not data" };
@@ -50,7 +51,7 @@ namespace BikeStoreApi.Controllers
         [HttpGet("getAllProducts")]
         public IActionResult getAllProducts()
         {
-            List<Product> products = this._productionRepository.GetAllProducts().Result;
+            List<Product> products = this._productionService.GetAllProducts().Result;
             if(products.Count == 0)
             {
                 var data = new { Message = "Not data" };

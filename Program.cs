@@ -1,6 +1,7 @@
 using BikeStoreApi.Data;
 using BikeStoreApi.Models;
 using BikeStoreApi.Repositories.Production;
+using BikeStoreApi.Services.Production;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,7 @@ builder.Services.AddDbContext<DBContextSqlServer>(options =>
         options.UseSqlServer(connectionString));
 
 builder.Services.AddTransient<IProductionRepository, ProductionRepository>();
-
+builder.Services.AddTransient<IProductionService, ProductionService>();
 
 var app = builder.Build();
 
