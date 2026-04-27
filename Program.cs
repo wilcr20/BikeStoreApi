@@ -1,4 +1,7 @@
+using BikeStoreApi.Data;
 using BikeStoreApi.Repositories.Production;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+var connectionString = builder.Configuration.GetConnectionString("DBConnection");
+
+
+builder.Services.AddDbContext<DevDBContext>(options =>
+        options.UseSqlServer(connectionString));
 
 builder.Services.AddTransient<IProductionRepository, ProductionRepository>();
 
